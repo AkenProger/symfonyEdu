@@ -9,13 +9,22 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ConferenceController extends AbstractController
 {
-    #[Route('/', name: 'homepage')]
-    public function index(Request $request): Response
+
+    #[Route('/hello/{username}', name: 'homepage')]
+    public final function index(string $username = ""): Response
     {
-        $greet = '';
-        if ($name = $request->query->get('hello')) {
-            $greet = sprintf('<h1>Hello %s!</h1>', htmlspecialchars($name));
-        }
-        return new Response($greet);
+        return new Response(
+            $username ?
+                sprintf('<h1>Hello %s!</h1> <a href="/allProducts">All products</a>', htmlspecialchars($username))
+                : 'Empty Body!');
+
     }
+
+    #[Route('/allProducts', name: 'allProduct')]
+    public final function getAllProducts(): Response
+    {
+        return new Response('<h1>Product List</h1>');
+    }
+
+
 }
