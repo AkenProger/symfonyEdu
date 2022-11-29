@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
-use function Symfony\Component\Translation\t;
 
 class ConferenceController extends AbstractController
 {
@@ -34,7 +33,6 @@ class ConferenceController extends AbstractController
             'conferences' => $conferenceRepository->findAll()
         ]));
     }
-
 
     /**
      * @throws \Twig\Error\SyntaxError
